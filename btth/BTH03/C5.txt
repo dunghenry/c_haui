@@ -1,0 +1,15 @@
+function factorial(x) 
+{ 
+
+  if (x === 0)
+ {
+    return 1;
+ }
+  return x * factorial(x-1);
+         
+}
+undefined
+factorial(8) + factorial(7) + factorial(6) + factorial(5) + factorial(4) + factorial(3) +factorial(2) + factorial(1)
+46233
+factorial(4) + factorial(3) +factorial(2) + factorial(1)
+33

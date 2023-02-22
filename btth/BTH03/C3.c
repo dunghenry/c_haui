@@ -18,7 +18,7 @@ void nhap(int *n, int *x)
             printf("Nhap lai so nguyen duong x: ");
             scanf("%d", x);
         }
-    } while (n <= 0 || x <= 0);
+    } while (*n <= 0 || *x <= 0);
 }
 long long tinhgt(int n, int x)
 {
@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
 {
     int n, x;
     nhap(&n, &x);
-    int result = tinhgt(n, x);
+    long long result = tinhgt(n, x);
     printf("Ket qua la: %lld", result);
     return 0;
 }

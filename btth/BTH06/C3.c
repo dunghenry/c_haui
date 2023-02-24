@@ -18,37 +18,38 @@ void xuat(int *a, int n)
         printf("%d\t", *(a + i));
     }
 }
-void xoaphantu(int a[], int &n, int vt)
+void xoaphantu(int *a, int *n, int vt)
 {
     int i;
-    for (i = vt; i < n - 1; i++)
+    for (i = vt; i < *n - 1; i++)
     {
-        a[i] = a[i + 1];
+        // a[i] = a[i + 1];
+        *(a + i) = *(a + i + 1);
     }
-    n--;
-    realloc(a, n * sizeof(int *));
+    --*n;
+    realloc(a, *n * sizeof(int *));
 }
-void xoaphantule(int a[], int &n)
+void xoaphantule(int *a, int *n)
 {
     int i;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < *n; i++)
     {
-        if (a[i] % 2 != 0)
+        if (*(a + i) % 2 != 0)
         {
             xoaphantu(a, n, i);
         }
     }
 }
-void chenphantu(int a[], int &n, int vt, int gt)
+void chenphantu(int *a, int *n, int vt, int gt)
 {
     int i;
-    for (i = n; i > vt; i--)
+    ++*n;
+    realloc(a, *n * sizeof(int *));
+    for (i = *n; i > vt; i--)
     {
-        a[i] = a[i - 1];
+        *(a + i) = *(a + i - 1);
     }
-    a[vt] = gt;
-    n++;
-    realloc(a, n + 1 * sizeof(int *));
+    *(a + vt) = gt;
 }
 int main(int argc, char const *argv[])
 {
@@ -66,7 +67,7 @@ int main(int argc, char const *argv[])
     } while (n <= 5 || n >= 20);
     a = (int *)malloc(n * sizeof(int));
     nhap(a, n);
-    xoaphantule(a, n);
+    xoaphantule(a, &n);
     int vt;
     int gt;
     printf("\nNhap vi tri can chen: ");
@@ -81,7 +82,7 @@ int main(int argc, char const *argv[])
     } while (vt < 0 || vt > n);
     printf("\nNhap gia tri can chen: ");
     scanf("%d", &gt);
-    chenphantu(a, n, vt, gt);
+    chenphantu(a, &n, vt, gt);
     xuat(a, n);
     // free(a);
     return 0;
